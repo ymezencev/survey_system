@@ -28,7 +28,8 @@ class AvailableSurveySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Survey
-        fields = ["id", "name", "start_at", "finish_at", "questions", ]
+        fields = ["id", "name", "description", "start_at", "finish_at",
+                  "questions", ]
 
 
 class AnswerListSerializer(serializers.ModelSerializer):
@@ -40,9 +41,18 @@ class AnswerListSerializer(serializers.ModelSerializer):
         fields = ["id", "question", "choice", "text", ]
 
 
+class SurveyDataSerializer(serializers.ModelSerializer):
+    """Данные по опросу в результате прохождение"""
+
+    class Meta:
+        model = Survey
+        fields = ["id", "name", "description"]
+
+
 class SurveyListSerializer(serializers.ModelSerializer):
     """Результат опроса"""
     answers = AnswerListSerializer(many=True)
+    survey = SurveyDataSerializer(read_only=True)
 
     class Meta:
         model = SurveyResult

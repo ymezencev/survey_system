@@ -10,6 +10,8 @@ class Survey(models.Model):
         self.first_start_at = self.start_at
 
     name = models.CharField("Название опроса", max_length=150)
+    description = models.TextField("Описание опроса", max_length=300,
+                                   null=True, blank=True)
     start_at = models.DateTimeField("Начало действия опроса", db_index=True)
     finish_at = models.DateTimeField("Окончание действия опроса",
                                      db_index=True)

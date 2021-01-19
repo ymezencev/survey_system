@@ -22,8 +22,7 @@ class AvailableSurveyViewSet(ListModelMixin, RetrieveModelMixin,
     """
     now = timezone.now()
     queryset = Survey.objects.filter(start_at__lte=now, finish_at__gte=now).\
-        prefetch_related("questions", "questions__choices").\
-        order_by("id", "questions__order_num")
+        prefetch_related("questions", "questions__choices")
     serializer_class = AvailableSurveySerializer
     pagination_class = PageNumberPagination
     permission_classes = [AllowAny]

@@ -39,7 +39,7 @@ class SurveyAdmin(admin.ModelAdmin):
     list_display_links = ("name",)
     list_filter = ("start_at", "finish_at")
     search_fields = ("name",)
-    fields = ("name", ("start_at", "finish_at",),)
+    fields = ("name", "description", ("start_at", "finish_at",),)
     inlines = [QuestionInline, ]
 
     def get_readonly_fields(self, request, obj=None):
